@@ -6,7 +6,7 @@
 
 int main() {
 
-	cout << "TEST";
+	cout << "TEST test test";
 
 
 }
