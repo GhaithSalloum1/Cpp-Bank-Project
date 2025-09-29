@@ -148,6 +148,15 @@ public:
 	}
 
 
+	bool IsEmpty() {
+		return (_Mode == enMode::EmptyMode);
+	}
+
+	string AccountNumber()
+	{
+		return _AccountNumber;
+	}
+
 	void setPinCode(string _PinCode) {
 		this->_PinCode = _PinCode;
 	}
@@ -168,9 +177,112 @@ public:
 
 	__declspec(property(get = getAccountBalance, put = setAccountBalance)) string AccountBalance;
 
-	string AccountNumber()
+	string FullName() {
+		return FirstName + LastName;
+	}
+
+	void Print() {
+
+		cout << "\nClient's Card:";
+		cout << "\n___________________";
+		cout << "\nFirst Name: " << FirstName;
+		cout << "\nLast Name: " << LastName;
+		cout << "\nFull Name: " << FullName();
+		cout << "\nEmail: " << Email;
+		cout << "\nPhone: " << Phone;
+		cout << "\nAcc Number: " << _AccountNumber;
+		cout << "\nPassword: " << _PinCode;
+		cout << "\nBalance: " << _AccountBalance;
+		cout << "\n___________________";
+
+	}
+
+	static clsBankClient Find(string _AccountNumber) {
+
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::in);
+
+		if (MyFile.is_open())
+		{
+
+			string Line;
+			while (getline(MyFile, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				if (Client.AccountNumber() == _AccountNumber)
+				{
+					MyFile.close();
+					return Client;
+				}
+			}
+			MyFile.close();
+		}
+
+		return _GetEmptyClientObject();
+
+	}
+
+	static clsBankClient Find(string _AccountNumber, string _PinCode) {
+
+		fstream MyFile;
+		MyFile.open("Clients.txt", ios::in);
+
+		if (MyFile.is_open())
+		{
+
+			string Line;
+			while (getline(MyFile, Line))
+			{
+				clsBankClient Client = _ConvertLinetoClientObject(Line);
+				if (Client.AccountNumber() == _AccountNumber && Client._PinCode == _PinCode)
+				{
+					MyFile.close();
+					return Client;
+				}
+			}
+			MyFile.close();
+		}
+
+		return _GetEmptyClientObject();
+
+	}
+
+	enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1 };
+
+	enSaveResults Save()
 	{
-		return _AccountNumber;
+
+		switch (_Mode)
+		{
+		case enMode::EmptyMode:
+		{
+
+			return enSaveResults::svFaildEmptyObject;
+		}
+
+		case enMode::UpdateMode:
+		{
+
+
+			_Update();
+
+			return enSaveResults::svSucceeded;
+
+			break;
+		}
+
+
+		}
+
+
+
+	}
+
+	static bool IsClientExist(string AccountNumber)
+	{
+
+		clsBankClient Client1 = clsBankClient::Find(AccountNumber);
+		return (!Client1.IsEmpty());
 	}
 
 };
