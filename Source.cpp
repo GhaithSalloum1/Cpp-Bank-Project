@@ -13,7 +13,7 @@ int main() {
 
 
     clsMainScreen::ShowMainMenue();
-    
+    cout << "testing ";
 
     system("pause>0");
     return 0;
