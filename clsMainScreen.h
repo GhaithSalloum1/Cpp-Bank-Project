@@ -3,6 +3,7 @@
 #include "clsScreen.h"
 #include "clsInputValidate.h"
 #include"clsClientListScreen.h"
+#include"clsFindClientScreen.h"
 #include"clsAddNewClientScreen.h"
 #include"clsDeleteClientScreen.h"
 #include"clsUpdateClientScreen.h"
@@ -63,7 +64,7 @@ class clsMainScreen:protected clsScreen
 
        static void _ShowFindClientScreen()
        {
-           cout << "\nFind Client Screen Will be here...\n";
+           clsFindClientScreen::ShowFindClientScreen();
 
        }
 
