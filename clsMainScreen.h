@@ -7,6 +7,8 @@
 #include"clsAddNewClientScreen.h"
 #include"clsDeleteClientScreen.h"
 #include"clsUpdateClientScreen.h"
+#include"clsTransactionsScreen.h"
+
 
 
 
@@ -32,7 +34,7 @@ class clsMainScreen:protected clsScreen
 
        static  void _GoBackToMainMenue()
         {
-            cout << setw(37) << left << ""<<"\n\tPress any key to go back to Main Menue...\n";
+            cout << setw(37) << left << ""<<"\n\tPress any key to go back to Main Menu...\n";
            
             system("pause>0");
             ShowMainMenue();
@@ -70,7 +72,7 @@ class clsMainScreen:protected clsScreen
 
        static void _ShowTransactionsMenue()
        {
-           cout << "\nTransactions Menue Will be here...\n";
+           clsTransactionsScreen::ShowTransactionsScreen();
 
        }
 
@@ -124,11 +126,13 @@ class clsMainScreen:protected clsScreen
             case enMainMenueOptions::eShowTransactionsMenue:
                 system("cls");
                 _ShowTransactionsMenue();
+                _GoBackToMainMenue();
                 break;
 
             case enMainMenueOptions::eManageUsers:
                 system("cls");
                 _ShowManageUsersMenue();
+                _GoBackToMainMenue();
                 break;
 
             case enMainMenueOptions::eExit:
