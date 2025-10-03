@@ -55,13 +55,20 @@ public:
         char Answer = 'n';
         cin >> Answer;
 
-        if (Answer == 'y' || Answer == 'Y')
+        if (Answer == 'Y' || Answer == 'y')
         {
-            Client.Withdraw(Amount);
-            cout << "\nAmount Withdrawed Succesfully.";
-            cout << "\nNew Balance: " << Client.AccountBalance;
+            if (Client.Withdraw(Amount))
+            {
+                cout << "\nAmount Withdrew Successfully.\n";
+                cout << "\nNew Balance Is: " << Client.AccountBalance;
+            }
+            else
+            {
+                cout << "\nCannot withdraw, Insuffecient Balance!\n";
+                cout << "\nAmout to withdraw is: " << Amount;
+                cout << "\nYour Balance is: " << Client.AccountBalance;
+            }
         }
-
         else
         {
             cout << "\nOperation was canceled.";
