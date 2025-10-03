@@ -1,6 +1,7 @@
 #pragma once
 #include"clsScreen.h"
 #include"clsMainScreen.h"
+#include"clsDepositScreen.h"
 
 class clsTransactionsScreen : protected clsScreen
 {
@@ -28,7 +29,7 @@ private:
     }
 
     static void _ShowDepositScreen() {
-        cout << "\nDeposit Screen Will Be Here...";
+        clsDepositScreen::ShowDepositScreen();
 
     }
 
