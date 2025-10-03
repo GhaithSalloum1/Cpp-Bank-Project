@@ -3,6 +3,7 @@
 #include"clsMainScreen.h"
 #include"clsDepositScreen.h"
 #include"clsWithdrawScreen.h"
+#include"clsTotalBalancesScreen.h"
 
 class clsTransactionsScreen : protected clsScreen
 {
@@ -40,7 +41,7 @@ private:
     }
 
     static void _ShowTotalBalanceScreen() {
-        cout << "\nTotal Balance Will Be Here...";
+        clsTotalBalancesScreen::ShowTotalBalances();
 
     }
 
