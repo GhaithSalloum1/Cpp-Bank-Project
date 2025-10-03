@@ -2,6 +2,7 @@
 #include"clsScreen.h"
 #include"clsMainScreen.h"
 #include"clsDepositScreen.h"
+#include"clsWithdrawScreen.h"
 
 class clsTransactionsScreen : protected clsScreen
 {
@@ -34,7 +35,7 @@ private:
     }
 
     static void _ShowWithdrawScreen() {
-        cout << "\nWithdraw Screen Will Be Here...";
+        clsWithdrawScreen::ShowWithdrawScreen();
 
     }
 
