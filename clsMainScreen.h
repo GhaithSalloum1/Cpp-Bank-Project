@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "clsScreen.h"
+#include"clsManageUsers.h"
 #include "clsInputValidate.h"
 #include"clsClientListScreen.h"
 #include"clsFindClientScreen.h"
@@ -78,7 +79,7 @@ class clsMainScreen:protected clsScreen
 
        static void _ShowManageUsersMenue()
        {
-           cout << "\nUsers Menue Will be here...\n";
+           clsManageUsers::ShowManageUsersScreen();
 
        }
 
