@@ -84,10 +84,10 @@ class clsMainScreen:protected clsScreen
        }
 
        static void _ShowEndScreen()
-           {
+       {
                cout << "\nEnd Screen Will be here...\n";
 
-           }
+       }
 
        static void _PerfromMainMenueOption(enMainMenueOptions MainMenueOption)
         {
