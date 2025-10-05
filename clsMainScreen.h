@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "clsScreen.h"
+#include"Global.h"
 #include"clsManageUsers.h"
 #include "clsInputValidate.h"
 #include"clsClientListScreen.h"
@@ -83,10 +84,8 @@ class clsMainScreen:protected clsScreen
 
        }
 
-       static void _ShowEndScreen()
-       {
-               cout << "\nEnd Screen Will be here...\n";
-
+       static void _Logout() {
+           CurrentUser = clsUser::Find("", "");
        }
 
        static void _PerfromMainMenueOption(enMainMenueOptions MainMenueOption)
@@ -138,7 +137,7 @@ class clsMainScreen:protected clsScreen
 
             case enMainMenueOptions::eExit:
                 system("cls");
-                _ShowEndScreen();
+                _Logout();
                 //Login();
 
                 break;
