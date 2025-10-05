@@ -1,6 +1,7 @@
 #pragma once
 #include"clsScreen.h"
 #include"clsInputValidate.h"
+#include"clsFindUserScreen.h"
 #include"clsListUsersScreen.h"
 #include"clsAddNewUserScreen.h"
 #include"clsDeleteUserScreen.h"
@@ -53,7 +54,7 @@ private:
     }
 
     static void _ShowFindUsersScreen() {
-        cout << "\nFind Users Screen Will Be Here...";
+        clsFindUserScreen::ShowFindUserScreen();
 
     }
 
