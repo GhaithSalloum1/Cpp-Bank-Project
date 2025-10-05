@@ -1,5 +1,6 @@
 #pragma once
 #include"clsUser.h"
+#include<iomanip>
 #include"clsScreen.h"
 
 
@@ -33,7 +34,7 @@ public:
         string Title = "\t  User List Screen";
         string SubTitle = "\t    (" + to_string(vUsers.size()) + ") User(s).";
 
-        _DrawScreenHeader(Title, SubTitle);
+        clsScreen::_DrawScreenHeader(Title, SubTitle);
 
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "______________________________________________\n" << endl;
