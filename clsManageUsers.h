@@ -17,7 +17,7 @@ private:
     static short _ReadManageUsersOptions() {
 
         cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 6]? ";
-        short choice = clsInputValidate::ReadShortNumberBetween(1, 6, "Enter Number between 1 to 4? ");
+        short choice = clsInputValidate::ReadShortNumberBetween(1, 6, "Enter Number between 1 to 6? ");
         return choice;
     }
 
@@ -30,7 +30,7 @@ private:
     }
 
     static void _ShowListUsersScreen() {
-        clsListUsersScreen::ShowListUsersScreen();
+        clsListUsersScreen::ShowUsersList();
 
     }
 

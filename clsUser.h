@@ -4,6 +4,7 @@
 #include "clsPerson.h"
 #include "clsString.h"
 #include <vector>
+#include<iomanip>
 #include <fstream>
 
 using namespace std;
@@ -37,9 +38,9 @@ private:
         UserRecord += User.LastName + Seperator;
         UserRecord += User.Email + Seperator;
         UserRecord += User.Phone + Seperator;
-        UserRecord += User.UserName + Seperator;
-        UserRecord += User.Password + Seperator;
-        UserRecord += to_string(User.Permissions);
+        UserRecord += User._UserName + Seperator;
+        UserRecord += User._Password + Seperator;
+        UserRecord += to_string(User._Permissions);
 
         return UserRecord;
 
@@ -91,7 +92,7 @@ private:
                 if (U.MarkedForDeleted() == false)
                 {
                     //we only write records that are not marked for delete.  
-                    DataLine = _ConverUserObjectToLine(U);
+                    DataLine = _ConvertUserObjectToLine(U);
                     MyFile << DataLine << endl;
 
                 }

@@ -1,16 +1,14 @@
 #pragma once
-#include"clsUser.h"
-#include<iomanip>
-#include"clsScreen.h"
 
+#include <iostream>
+#include "clsScreen.h"
+#include "clsUser.h"
+#include <iomanip>
 
-
-class clsListUsersScreen : protected clsScreen
+class clsListUsersScreen :protected clsScreen
 {
 
-
 private:
-
     static void _PrintUserRecordLine(clsUser User)
     {
 
@@ -23,18 +21,16 @@ private:
 
     }
 
-
 public:
 
-
-    static void ShowListUsersList()
+    static void ShowUsersList()
     {
         vector <clsUser> vUsers = clsUser::GetUsersList();
 
         string Title = "\t  User List Screen";
         string SubTitle = "\t    (" + to_string(vUsers.size()) + ") User(s).";
 
-        clsScreen::_DrawScreenHeader(Title, SubTitle);
+        _DrawScreenHeader(Title, SubTitle);
 
         cout << setw(8) << left << "" << "\n\t_______________________________________________________";
         cout << "______________________________________________\n" << endl;
@@ -63,7 +59,5 @@ public:
         cout << "______________________________________________\n" << endl;
     }
 
-
-
-
 };
+
