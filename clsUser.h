@@ -46,6 +46,16 @@ private:
 
     }
 
+    string _PrepareLogInRecord(string Seperator = "#//#")
+    {
+        string LoginRecord = "";
+        LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
+        LoginRecord += UserName + Seperator;
+        LoginRecord += Password + Seperator;
+        LoginRecord += to_string(Permissions);
+        return LoginRecord;
+    }
+
     static  vector <clsUser> _LoadUsersDataFromFile()
     {
 
@@ -366,6 +376,24 @@ public:
             return false;
         }
 
+
+    }
+    
+    void RegisterLogIn()
+    {
+
+        string stDataLine = _PrepareLogInRecord();
+
+        fstream MyFile;
+        MyFile.open("LoginRegister.txt", ios::out | ios::app);
+
+        if (MyFile.is_open())
+        {
+
+            MyFile << stDataLine << endl;
+
+            MyFile.close();
+        }
 
     }
 
