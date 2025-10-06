@@ -50,6 +50,7 @@ private:
 
         } while (LoginFaild);
 
+        CurrentUser.clsUser::RegisterLogIn();
         clsMainScreen::ShowMainMenue();
 
     }
