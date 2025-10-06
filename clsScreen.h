@@ -1,5 +1,6 @@
 #pragma once
 #include"Global.h"
+#include"clsDate.h"
 #include <iostream>
 
 
@@ -17,6 +18,11 @@ protected:
             cout << "\n\t\t\t\t\t  " << SubTitle;
         }
         cout << "\n\t\t\t\t\t______________________________________\n\n";
+
+        cout << "\t\t\t\t\tUser: " << CurrentUser.UserName;
+        cout << "\n\t\t\t\t\tDate: " << clsDate::DateToString(clsDate()) << '\n' << endl;
+
+
     }
 
     static bool CheckAccessRights(clsUser::enPermissions Permission) {
