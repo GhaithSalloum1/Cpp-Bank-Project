@@ -10,6 +10,7 @@
 #include"clsDeleteClientScreen.h"
 #include"clsUpdateClientScreen.h"
 #include"clsTransactionsScreen.h"
+#include"clsLoginRegisterScreen.h"
 
 
 
@@ -85,7 +86,7 @@ class clsMainScreen:protected clsScreen
        }
 
        static void _ShowRegisterLoginScreen() {
-           cout << "\nRegister menu will be here...";
+           clsLoginRegisterScreen::ShowLoginRegisterScreen();
 
        }
 
