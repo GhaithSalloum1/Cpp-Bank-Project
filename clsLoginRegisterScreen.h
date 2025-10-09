@@ -21,8 +21,14 @@ public:
 
 	static void ShowLoginRegisterScreen() {
 
-        _DrawScreenHeader("\t\t Login Register");
 
+        if (!CheckAccessRights(clsUser::enPermissions::pViewRegisterLog))
+        {
+            return;
+        }
+
+
+        _DrawScreenHeader("\t\t Login Register");
 
         vector <clsUser::stLoginRegisterRecord> vLoginRegisterRecord = clsUser::GetLoginRegisterList();
 
