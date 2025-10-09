@@ -3,6 +3,7 @@
 #include <string>
 #include "clsPerson.h"
 #include "clsString.h"
+#include "clsDate.h"
 #include <vector>
 #include <fstream>
 
@@ -125,6 +126,40 @@ private:
         _SaveCleintsDataToFile(_vClients);
 
     }
+
+    string _PrepareTransferRecord(double TransferAmount, clsBankClient ClientDest,
+        string UserName, string Seperator = "#//#") {
+
+        string RecordLine = "";
+        RecordLine += clsDate::GetSystemDateTimeString() + Seperator;
+        RecordLine += AccountNumber() + Seperator;
+        RecordLine += ClientDest.AccountNumber() + Seperator;
+        RecordLine += to_string(TransferAmount) + Seperator;
+        RecordLine += to_string(AccountBalance) + Seperator;
+        RecordLine += to_string(ClientDest.AccountBalance) + Seperator;
+        RecordLine += UserName;
+
+        return RecordLine;
+
+    }
+
+    void _RegisterTransfer(double TransferAmount, clsBankClient ClientDest, string UserName) {
+
+        string DataLine = _PrepareTransferRecord(TransferAmount, ClientDest, UserName);
+
+        fstream MyFile;
+        MyFile.open("TransferLog.txt", ios::out | ios::app);
+
+
+        if (MyFile.is_open())
+        {
+            MyFile << DataLine << endl;
+
+            MyFile.close();
+        }
+
+    }
+
 
     void _AddNew()
     {
@@ -388,7 +423,7 @@ public:
         }
     }
 
-    bool Transfer(float Amount, clsBankClient& DestinationClient)
+    bool Transfer(float Amount, clsBankClient& DestinationClient, string UserName)
     {
         if (Amount > AccountBalance)
         {
@@ -397,8 +432,14 @@ public:
 
         Withdraw(Amount);
         DestinationClient.Deposit(Amount);
+        _RegisterTransfer(Amount, DestinationClient, UserName);
         return true;
     }
+
+
+
+
+ 
 
 
 };
