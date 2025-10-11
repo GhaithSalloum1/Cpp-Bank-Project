@@ -281,6 +281,26 @@ public:
 
     }
 
+    static string Encrypt(string Text, short EncryptionKey) {
+
+        for (int i = 0; i <= Text.length(); i++)
+        {
+            Text[i] = char((int)Text[i] + EncryptionKey);
+        }
+
+        return Text;
+    }
+
+    static string Decrypt(string Text, short DecryptionKey) {
+
+        for (int i = 0; i <= Text.length(); i++)
+        {
+            Text[i] = char((int)Text[i] - DecryptionKey);
+        }
+
+        return Text;
+    }
+
 
 
 };

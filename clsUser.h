@@ -5,6 +5,7 @@
 #include "clsString.h"
 #include <vector>
 #include<iomanip>
+#include"clsUtil.h"
 #include <fstream>
 
 using namespace std;
@@ -26,7 +27,7 @@ private:
         vUserData = clsString::Split(Line, Seperator);
 
         return clsUser(enMode::UpdateMode, vUserData[0], vUserData[1], vUserData[2],
-            vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
+            vUserData[3], vUserData[4], clsUtil::Decrypt(vUserData[5], 2), stoi(vUserData[6]));
 
     }
 
@@ -39,7 +40,7 @@ private:
         UserRecord += User.Email + Seperator;
         UserRecord += User.Phone + Seperator;
         UserRecord += User._UserName + Seperator;
-        UserRecord += User._Password + Seperator;
+        UserRecord += clsUtil::Encrypt(User._Password, 2) + Seperator;
         UserRecord += to_string(User._Permissions);
 
         return UserRecord;
@@ -51,7 +52,7 @@ private:
         string LoginRecord = "";
         LoginRecord += clsDate::GetSystemDateTimeString() + Seperator;
         LoginRecord += UserName + Seperator;
-        LoginRecord += Password + Seperator;
+        LoginRecord += clsUtil::Encrypt(Password, 2) + Seperator;
         LoginRecord += to_string(Permissions);
         return LoginRecord;
     }
@@ -67,7 +68,7 @@ private:
         vector <string> LoginRegisterDataLine = clsString::Split(Line, Seperator);
         LoginRegisterRecord.DateTime = LoginRegisterDataLine[0];
         LoginRegisterRecord.UserName = LoginRegisterDataLine[1];
-        LoginRegisterRecord.Password = LoginRegisterDataLine[2];
+        LoginRegisterRecord.Password = clsUtil::Decrypt(LoginRegisterDataLine[2], 2);
         LoginRegisterRecord.Permissions = stoi(LoginRegisterDataLine[3]);
 
         return LoginRegisterRecord;
