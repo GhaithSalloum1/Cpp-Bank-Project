@@ -143,6 +143,28 @@ private:
 
     }
 
+
+    struct stTransferLogRecord;
+    static stTransferLogRecord _ConvertTransferRegisterLineToRecord(string Line, string Seperator = "#//#") {
+
+
+        stTransferLogRecord TransferRegisterRecord;
+
+        vector<string> vTransfersLog = clsString::Split(Line, Seperator);
+
+        TransferRegisterRecord.DateTime = vTransfersLog[0];
+        TransferRegisterRecord.SourceAccountNumber = vTransfersLog[1];
+        TransferRegisterRecord.DestinationAccountNumber = vTransfersLog[2];
+        TransferRegisterRecord.Amount = stod(vTransfersLog[3]);
+        TransferRegisterRecord.srcBalanceAfter = stod(vTransfersLog[4]);
+        TransferRegisterRecord.destBalanceAfter = stod(vTransfersLog[5]);
+        TransferRegisterRecord.UserName = vTransfersLog[6];
+
+        return TransferRegisterRecord;
+
+
+    }
+
     void _RegisterTransfer(double TransferAmount, clsBankClient ClientDest, string UserName) {
 
         string DataLine = _PrepareTransferRecord(TransferAmount, ClientDest, UserName);
@@ -202,6 +224,18 @@ public:
         _AccountBalance = AccountBalance;
 
     }
+
+    struct stTransferLogRecord
+    {
+        string DateTime;
+        string SourceAccountNumber;
+        string DestinationAccountNumber;
+        double Amount;
+        double srcBalanceAfter;
+        double destBalanceAfter;
+        string UserName;
+    };
+
 
     bool IsEmpty()
     {
@@ -437,7 +471,29 @@ public:
     }
 
 
+    static vector<stTransferLogRecord> GetTransferLogRecord() {
 
+        vector<stTransferLogRecord> vTransfersLog;
+        fstream MyFile;
+        MyFile.open("TransferLog.txt", ios::in);
+
+        if (MyFile.is_open())
+        {
+            string Line;
+
+            stTransferLogRecord TransferRegisterRecord;
+
+            while (getline(MyFile, Line))
+            {
+                TransferRegisterRecord = _ConvertTransferRegisterLineToRecord(Line);
+
+                vTransfersLog.push_back(TransferRegisterRecord);
+
+            }
+            MyFile.close();
+        }
+        return vTransfersLog;
+    }
 
  
 
